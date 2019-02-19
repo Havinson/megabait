@@ -1,11 +1,15 @@
 package com.megabait.entities;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Participant {
+
+	@Id
 	private long id;
 	private String firstName;
 	private String lastName;
@@ -20,6 +24,18 @@ public class Participant {
 	private String interests;
 	private Date lastActiveDate;
 	private Gender gender;
+
+	/** All events of this customer */
+
+	private Collection<Event> participatedInEvents;
+
+	public Collection<Event> getParticipatedInEvents() {
+		return participatedInEvents;
+	}
+
+	public void setParticipatedInEvents(Collection<Event> participatedInEvents) {
+		this.participatedInEvents = participatedInEvents;
+	}
 
 	public long getId() {
 		return id;
@@ -131,5 +147,14 @@ public class Participant {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	@Override
+	public String toString() {
+		return "Participant [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", password="
+				+ password + ", email=" + email + ", telNumber=" + telNumber + ", city=" + city + ", address=" + address
+				+ ", district=" + district + ", birthdate=" + birthdate + ", repatriationDate=" + repatriationDate
+				+ ", interests=" + interests + ", lastActiveDate=" + lastActiveDate + ", gender=" + gender
+				+ ", participatedInEvents=" + participatedInEvents + "]";
 	}
 }

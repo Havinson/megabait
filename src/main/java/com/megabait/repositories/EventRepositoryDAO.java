@@ -8,4 +8,6 @@ import com.megabait.entities.Event;
 @Repository
 public interface EventRepositoryDAO extends JpaRepository<Event, Long> {
 
+	public Event findByName(String name);
+
 }

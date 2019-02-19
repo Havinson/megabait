@@ -1,12 +1,14 @@
 package com.megabait.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Coordinator {
 	private String firstName;
 	private String lastName;
 	private int eventsQuant;
+	@Id
 	private long id;
 	private String email;
 	private String password;
@@ -66,6 +68,12 @@ public class Coordinator {
 
 	public void setTelNumber(String telNumber) {
 		this.telNumber = telNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "Coordinator [firstName=" + firstName + ", lastName=" + lastName + ", eventsQuant=" + eventsQuant
+				+ ", id=" + id + ", email=" + email + ", password=" + password + ", telNumber=" + telNumber + "]";
 	}
 
 }

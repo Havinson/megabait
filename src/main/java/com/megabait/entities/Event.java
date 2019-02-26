@@ -87,4 +87,12 @@ public class Event {
 	public void setCoordinator(Coordinator coordinator) {
 		this.coordinator = coordinator;
 	}
+
+	public Collection<Participant> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(Collection<Participant> participants) {
+		this.participants = participants;
+	}
 }

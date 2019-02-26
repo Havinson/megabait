@@ -36,6 +36,7 @@ public class AdminServiceImpl implements AdminService {
 
 	}
 
+	/** Must be replaced by deactivate */
 	@Override
 	public void removeEvent(Event event) {
 		eventRepositoryDAO.delete(event);

@@ -3,6 +3,7 @@ package com.megabait.services;
 import java.util.Collection;
 
 import com.megabait.entities.Event;
+import com.megabait.exceptions.MegabaitSystemExeption;
 
 public interface ParticipantService {
 
@@ -12,6 +13,6 @@ public interface ParticipantService {
 
 	public void subscribeToEvent(Event event);
 
-	public void unSubscribeToEvent(Event event);
+	public void unSubscribeToEvent(Event event) throws MegabaitSystemExeption;
 
 }

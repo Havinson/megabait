@@ -1,7 +1,13 @@
 package com.megabait.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Coordinator {
@@ -13,6 +19,12 @@ public class Coordinator {
 	private String email;
 	private String password;
 	private String telNumber;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Event> events = new ArrayList<>();
+
+	public Coordinator() {
+
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -74,6 +86,14 @@ public class Coordinator {
 	public String toString() {
 		return "Coordinator [firstName=" + firstName + ", lastName=" + lastName + ", eventsQuant=" + eventsQuant
 				+ ", id=" + id + ", email=" + email + ", password=" + password + ", telNumber=" + telNumber + "]";
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 }

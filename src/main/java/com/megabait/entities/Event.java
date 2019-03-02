@@ -1,12 +1,16 @@
 package com.megabait.entities;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Event {
@@ -20,9 +24,14 @@ public class Event {
 	private String place;
 	private double price;
 	private int participantQuantity;
-	private Coordinator coordinator;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "events")
+	private List<Coordinator> coordinators = new ArrayList<>();
+	@ManyToMany(mappedBy = "partisipantsEvents")
+	private List<Participant> participants = new ArrayList<>();;
 
-	private Collection<Participant> participants;
+	public Event() {
+
+	}
 
 	public long getId() {
 		return id;
@@ -80,11 +89,20 @@ public class Event {
 		this.participantQuantity = participantQuantity;
 	}
 
-	public Coordinator getCoordinator() {
-		return coordinator;
+	public List<Coordinator> getCoordinators() {
+		return coordinators;
 	}
 
-	public void setCoordinator(Coordinator coordinator) {
-		this.coordinator = coordinator;
+	public void setCoordinators(List<Coordinator> coordinators) {
+		this.coordinators = coordinators;
 	}
+
+	public List<Participant> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(List<Participant> participants) {
+		this.participants = participants;
+	}
+
 }

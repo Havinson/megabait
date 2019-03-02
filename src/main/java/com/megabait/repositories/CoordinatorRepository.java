@@ -3,11 +3,9 @@ package com.megabait.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.megabait.entities.Event;
+import com.megabait.entities.Coordinator;
 
 @Repository
-public interface EventRepositoryDAO extends JpaRepository<Event, Long> {
-
-	public Event findByName(String name);
+public interface CoordinatorRepository extends JpaRepository<Coordinator, Long> {
 
 }

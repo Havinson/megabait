@@ -1,10 +1,16 @@
 package com.megabait.entities;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Participant {
@@ -21,20 +27,27 @@ public class Participant {
 	private String district;
 	private Date birthdate;
 	private Date repatriationDate;
-	private String interests;
 	private Date lastActiveDate;
 	private Gender gender;
 
 	/** All events of this customer */
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Event> partisipantsEvents = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE }, mappedBy = "participants")
+	private Set<Interest> interests = new HashSet<>();
 
-	private Collection<Event> participatedInEvents;
-
-	public Collection<Event> getParticipatedInEvents() {
-		return participatedInEvents;
+	@Override
+	public String toString() {
+		return "Participant [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", password="
+				+ password + ", email=" + email + ", telNumber=" + telNumber + ", city=" + city + ", address=" + address
+				+ ", district=" + district + ", birthdate=" + birthdate + ", repatriationDate=" + repatriationDate
+				+ ", interests=" + interests + ", lastActiveDate=" + lastActiveDate + ", gender=" + gender
+				+ ", participatedInEvents=" + partisipantsEvents + "]";
 	}
 
-	public void setParticipatedInEvents(Collection<Event> participatedInEvents) {
-		this.participatedInEvents = participatedInEvents;
+	public Participant() {
+
 	}
 
 	public long getId() {
@@ -125,14 +138,6 @@ public class Participant {
 		this.repatriationDate = repatriationDate;
 	}
 
-	public String getInterests() {
-		return interests;
-	}
-
-	public void setInterests(String interests) {
-		this.interests = interests;
-	}
-
 	public Date getLastActiveDate() {
 		return lastActiveDate;
 	}
@@ -149,12 +154,20 @@ public class Participant {
 		this.gender = gender;
 	}
 
-	@Override
-	public String toString() {
-		return "Participant [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", password="
-				+ password + ", email=" + email + ", telNumber=" + telNumber + ", city=" + city + ", address=" + address
-				+ ", district=" + district + ", birthdate=" + birthdate + ", repatriationDate=" + repatriationDate
-				+ ", interests=" + interests + ", lastActiveDate=" + lastActiveDate + ", gender=" + gender
-				+ ", participatedInEvents=" + participatedInEvents + "]";
+	public List<Event> getPartisipantsEvents() {
+		return partisipantsEvents;
 	}
+
+	public void setPartisipantsEvents(List<Event> partisipantsEvents) {
+		this.partisipantsEvents = partisipantsEvents;
+	}
+
+	public void setInterests(Set<Interest> interests) {
+		this.interests = interests;
+	}
+
+	public Set<Interest> getInterests() {
+		return interests;
+	}
+
 }

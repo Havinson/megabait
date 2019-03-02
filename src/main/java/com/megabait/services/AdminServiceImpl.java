@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.megabait.entities.Event;
 import com.megabait.entities.Participant;
 import com.megabait.exceptions.MegabaitSystemExeption;
-import com.megabait.repositories.EventRepositoryDAO;
-import com.megabait.repositories.ParticipantRepositoriDAO;
+import com.megabait.repositories.EventRepository;
+import com.megabait.repositories.ParticipantRepository;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -19,17 +19,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Autowired
-	EventRepositoryDAO eventRepositoryDAO;
+	EventRepository eventRepository;
 
 	@Autowired
-	ParticipantRepositoriDAO participantRepositoryDAO;
+	ParticipantRepository participantRepository;
 
 	@Override
 	public void createEvent(Event event) throws MegabaitSystemExeption {
-		if (!(eventRepositoryDAO.existsById(event.getId()))
-				&& (eventRepositoryDAO.findByName(event.getName()) == null)) {
+		if (!(eventRepository.existsById(event.getId()))
+				&& (eventRepository.findByName(event.getName()) == null)) {
 
-			eventRepositoryDAO.save(event);
+			eventRepository.save(event);
 		} else {
 			throw new MegabaitSystemExeption("Event with the same Name or ID already exist");
 		}
@@ -38,18 +38,18 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public void removeEvent(Event event) {
-		eventRepositoryDAO.delete(event);
+		eventRepository.delete(event);
 	}
 
 	@Override
 	public void updateEvent(Event event) {
-		eventRepositoryDAO.saveAndFlush(event);
+		eventRepository.saveAndFlush(event);
 	}
 
 	@Override
 	public void createParticipant(Participant participant) throws MegabaitSystemExeption {
-		if (!(participantRepositoryDAO.existsById(participant.getId()))) {
-			participantRepositoryDAO.save(participant);
+		if (!(participantRepository.existsById(participant.getId()))) {
+			participantRepository.save(participant);
 		} else {
 			throw new MegabaitSystemExeption("Event with the same Name or ID already exist");
 		}
@@ -68,7 +68,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public void getParticipantbyId(long participantId) {
-		participantRepositoryDAO.findById(participantId);
+		participantRepository.findById(participantId);
 
 	}
 
@@ -76,7 +76,8 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Collection<Event> getAllEventOfParticipant(Participant participant) {
 
-		return participant.getParticipatedInEvents();
+		return null;
+//		participant.getPartisipantsEvents();
 	}
 
 }

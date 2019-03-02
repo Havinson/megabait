@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.megabait.entities.Participant;
 
 @Repository
-public interface ParticipantRepositoriDAO extends JpaRepository<Participant, Long> {
+public interface ParticipantRepository extends JpaRepository<Participant, Long> {
 
 }

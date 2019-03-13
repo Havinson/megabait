@@ -31,10 +31,9 @@ public class Participant {
 	private Gender gender;
 
 	/** All events of this customer */
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private List<Event> partisipantsEvents = new ArrayList<>();
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
-			CascadeType.MERGE }, mappedBy = "participants")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "participants")
 	private Set<Interest> interests = new HashSet<>();
 
 	@Override

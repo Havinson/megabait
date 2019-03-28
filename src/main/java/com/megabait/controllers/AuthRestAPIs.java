@@ -78,8 +78,9 @@ public class AuthRestAPIs {
 		}
 
 		// Creating user's account
-		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
-				encoder.encode(signUpRequest.getPassword()));
+		User user = new User(signUpRequest.getFirstName(), signUpRequest.getSecondName(), signUpRequest.getUsername(),
+				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()), signUpRequest.getPhone(),
+				signUpRequest.getAddress(), signUpRequest.getCity(), signUpRequest.getDistrict());
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
@@ -93,13 +94,13 @@ public class AuthRestAPIs {
 
 				break;
 			case "pm":
-				Role pmRole = roleRepository.findByName(RoleName.ROLE_PM)
+				Role pmRole = roleRepository.findByName(RoleName.ROLE_COORDINATOR)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(pmRole);
 
 				break;
 			default:
-				Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+				Role userRole = roleRepository.findByName(RoleName.ROLE_PARTICIPANT)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(userRole);
 			}

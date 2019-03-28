@@ -1,0 +1,4 @@
+use megabait_db;
+INSERT INTO roles(name) VALUES('ROLE_PARTICIPANT');
+INSERT INTO roles(name) VALUES('ROLE_COORDINATOR');
+INSERT INTO roles(name) VALUES('ROLE_ADMIN');

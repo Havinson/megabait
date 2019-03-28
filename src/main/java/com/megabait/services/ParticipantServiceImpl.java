@@ -46,8 +46,8 @@ public class ParticipantServiceImpl implements ParticipantService {
 	 * Gets collection of participants from received event, adds current participant
 	 * to the collection and receives updated Collection.
 	 * 
-	 * @param Event event
-	 * @return update Collection of Participants with added participant
+	 * @param Event
+	 *            event update Collection of Participants with added participant
 	 * 
 	 */
 	@Override
@@ -60,6 +60,9 @@ public class ParticipantServiceImpl implements ParticipantService {
 	/**
 	 * Removes participant from participants list of the received event. (Check if
 	 * contains).
+	 * 
+	 * @param Event event
+	 *            
 	 */
 	@Override
 	public void unSubscribeToEvent(Event event) throws MegabaitSystemExeption {

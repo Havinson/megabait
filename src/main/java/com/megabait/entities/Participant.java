@@ -21,7 +21,7 @@ public class Participant {
 	private String lastName;
 	private String password;
 	private String email;
-	private String telNumber;
+	private String phone;
 	private String city;
 	private String address;
 	private String district;
@@ -39,7 +39,7 @@ public class Participant {
 	@Override
 	public String toString() {
 		return "Participant [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", password="
-				+ password + ", email=" + email + ", telNumber=" + telNumber + ", city=" + city + ", address=" + address
+				+ password + ", email=" + email + ", phone=" + phone + ", city=" + city + ", address=" + address
 				+ ", district=" + district + ", birthdate=" + birthdate + ", repatriationDate=" + repatriationDate
 				+ ", interests=" + interests + ", lastActiveDate=" + lastActiveDate + ", gender=" + gender
 				+ ", participatedInEvents=" + partisipantsEvents + "]";
@@ -89,12 +89,12 @@ public class Participant {
 		this.email = email;
 	}
 
-	public String getTelNumber() {
-		return telNumber;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setTelNumber(String telNumber) {
-		this.telNumber = telNumber;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getCity() {

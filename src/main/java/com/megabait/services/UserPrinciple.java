@@ -1,112 +1,135 @@
 package com.megabait.services;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.megabait.entities.User;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.megabait.entities.User;
 
 public class UserPrinciple implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
 
-    private String name;
+	private String firstName;
+	private String secondName;
+	private String username;
+	private String email;
+	private String phone;
+	private String address;
+	private String city;
+	private String district;
 
-    private String username;
+	@JsonIgnore
+	private String password;
 
-    private String email;
+	private Collection<? extends GrantedAuthority> authorities;
 
-    @JsonIgnore
-    private String password;
+	public UserPrinciple(Long id, String firstName, String secondName, String username, String email, String password,
+			String phone, String address, String city, String district,
+			Collection<? extends GrantedAuthority> authorities) {
+		this.id = id;
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.city = city;
+		this.district = district;
+	}
 
-    private Collection<? extends GrantedAuthority> authorities;
+	public static UserPrinciple build(User user) {
+		List<GrantedAuthority> authorities = user.getRoles().stream()
+				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 
-    public UserPrinciple(Long id, String name, 
-			    		String username, String email, String password, 
-			    		Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.authorities = authorities;
-    }
+		return new UserPrinciple(user.getId(), user.getFirstName(), user.getSecondName(), user.getUsername(),
+				user.getEmail(), user.getPassword(), user.getPhone(), user.getAddress(), user.getCity(),
+				user.getDistrict(), authorities);
+	}
 
-    public static UserPrinciple build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
-                new SimpleGrantedAuthority(role.getName().name())
-        ).collect(Collectors.toList());
+	public Long getId() {
+		return id;
+	}
 
-        return new UserPrinciple(
-                user.getId(),
-                user.getName(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getPassword(),
-                authorities
-        );
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getSecondName() {
+		return secondName;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	@Override
+	public String getUsername() {
+		return username;
+	}
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
+	@Override
+	public String getPassword() {
+		return password;
+	}
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+	public String getCity() {
+		return city;
+	}
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+	public String getDistrict() {
+		return district;
+	}
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        
-        UserPrinciple user = (UserPrinciple) o;
-        return Objects.equals(id, user.id);
-    }
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+
+		UserPrinciple user = (UserPrinciple) o;
+		return Objects.equals(id, user.id);
+	}
 }

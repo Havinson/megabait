@@ -49,10 +49,10 @@ public class User {
 	@Size(min = 6, max = 100)
 	private String password;
 
-	// @NotBlank
-	// @Size(min = 6, max = 50)
-	// private String phone;
-	//
+	@NotBlank
+	@Size(min = 6, max = 50)
+	private String phone;
+
 	// @NotBlank
 	// @Size(min = 3, max = 50)
 	// private String address;
@@ -72,17 +72,17 @@ public class User {
 	public User() {
 	}
 
-	public User(String firstName, String secondName, String username, String email,
-			String password/**
-							 * , String phone, String address, String city, String district
-							 */
+	public User(String firstName, String secondName, String username, String email, String password,
+			String phone/**
+						 * , String address, String city, String district
+						 */
 	) {
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		// this.phone = phone;
+		this.phone = phone;
 		// this.address = address;
 		// this.city = city;
 		// this.district = district;
@@ -137,10 +137,10 @@ public class User {
 		this.password = password;
 	}
 
-	// public String getPhone() {
-	// return phone;
-	// }
-	//
+	public String getPhone() {
+		return phone;
+	}
+
 	// public String getAddress() {
 	// return address;
 	// }
@@ -153,10 +153,10 @@ public class User {
 	// return district;
 	// }
 	//
-	// public void setPhone(String phone) {
-	// this.phone = phone;
-	// }
-	//
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	// public void setAddress(String address) {
 	// this.address = address;
 	// }

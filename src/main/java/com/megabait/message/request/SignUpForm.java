@@ -27,10 +27,11 @@ public class SignUpForm {
 	@NotBlank
 	@Size(min = 6, max = 40)
 	private String password;
-	// // @NotBlank
-	// @Size(min = 6, max = 50)
-	// private String phone;
-	//
+
+	@NotBlank
+	@Size(min = 6, max = 50)
+	private String phone;
+
 	// // @NotBlank
 	// @Size(min = 3, max = 50)
 	// private String address;
@@ -45,10 +46,10 @@ public class SignUpForm {
 
 	private Set<String> role;
 
-	// public String getPhone() {
-	// return phone;
-	// }
-	//
+	public String getPhone() {
+		return phone;
+	}
+
 	// public String getAddress() {
 	// return address;
 	// }
@@ -60,11 +61,11 @@ public class SignUpForm {
 	// public String getDistrict() {
 	// return district;
 	// }
-	//
-	// public void setPhone(String phone) {
-	// this.phone = phone;
-	// }
-	//
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	// public void setAddress(String address) {
 	// this.address = address;
 	// }

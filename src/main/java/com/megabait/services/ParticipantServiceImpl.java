@@ -61,8 +61,9 @@ public class ParticipantServiceImpl implements ParticipantService {
 	 * Removes participant from participants list of the received event. (Check if
 	 * contains).
 	 * 
-	 * @param Event event
-	 *            
+	 * @param Event
+	 *            event
+	 * 
 	 */
 	@Override
 	public void unSubscribeToEvent(Event event) throws MegabaitSystemExeption {

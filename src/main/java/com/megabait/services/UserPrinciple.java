@@ -21,18 +21,20 @@ public class UserPrinciple implements UserDetails {
 	private String secondName;
 	private String username;
 	private String email;
-	private String phone;
-	private String address;
-	private String city;
-	private String district;
+
+	// Not needed for now
+	// private String phone;
+	// private String address;
+	// private String city;
+	// private String district;
 
 	@JsonIgnore
 	private String password;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
+	/** , String phone, String address, String city, String district */
 	public UserPrinciple(Long id, String firstName, String secondName, String username, String email, String password,
-			String phone, String address, String city, String district,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.firstName = firstName;
@@ -40,19 +42,22 @@ public class UserPrinciple implements UserDetails {
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.phone = phone;
-		this.address = address;
-		this.city = city;
-		this.district = district;
+		this.authorities = authorities;
+		// this.phone = phone;
+		// this.address = address;
+		// this.city = city;
+		// this.district = district;
 	}
 
+	/**
+	 * user.getPhone(), user.getAddress(), user.getCity(), user.getDistrict(),
+	 */
 	public static UserPrinciple build(User user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 
 		return new UserPrinciple(user.getId(), user.getFirstName(), user.getSecondName(), user.getUsername(),
-				user.getEmail(), user.getPassword(), user.getPhone(), user.getAddress(), user.getCity(),
-				user.getDistrict(), authorities);
+				user.getEmail(), user.getPassword(), authorities);
 	}
 
 	public Long getId() {
@@ -81,21 +86,21 @@ public class UserPrinciple implements UserDetails {
 		return password;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
+	// public String getPhone() {
+	// return phone;
+	// }
+	//
+	// public String getAddress() {
+	// return address;
+	// }
+	//
+	// public String getCity() {
+	// return city;
+	// }
+	//
+	// public String getDistrict() {
+	// return district;
+	// }
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

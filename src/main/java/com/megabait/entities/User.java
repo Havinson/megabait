@@ -49,21 +49,21 @@ public class User {
 	@Size(min = 6, max = 100)
 	private String password;
 
-	@NotBlank
-	@Size(min = 6, max = 50)
-	private String phone;
-
-	@NotBlank
-	@Size(min = 3, max = 50)
-	private String address;
-
-	@NotBlank
-	@Size(min = 1, max = 50)
-	private String city;
-
-	@NotBlank
-	@Size(min = 1, max = 60)
-	private String district;
+	// @NotBlank
+	// @Size(min = 6, max = 50)
+	// private String phone;
+	//
+	// @NotBlank
+	// @Size(min = 3, max = 50)
+	// private String address;
+	//
+	// @NotBlank
+	// @Size(min = 1, max = 50)
+	// private String city;
+	//
+	// @NotBlank
+	// @Size(min = 1, max = 60)
+	// private String district;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -72,17 +72,20 @@ public class User {
 	public User() {
 	}
 
-	public User(String firstName, String secondName, String username, String email, String password, String phone,
-			String address, String city, String district) {
+	public User(String firstName, String secondName, String username, String email,
+			String password/**
+							 * , String phone, String address, String city, String district
+							 */
+	) {
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.phone = phone;
-		this.address = address;
-		this.city = city;
-		this.district = district;
+		// this.phone = phone;
+		// this.address = address;
+		// this.city = city;
+		// this.district = district;
 
 	}
 
@@ -134,37 +137,37 @@ public class User {
 		this.password = password;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
+	// public String getPhone() {
+	// return phone;
+	// }
+	//
+	// public String getAddress() {
+	// return address;
+	// }
+	//
+	// public String getCity() {
+	// return city;
+	// }
+	//
+	// public String getDistrict() {
+	// return district;
+	// }
+	//
+	// public void setPhone(String phone) {
+	// this.phone = phone;
+	// }
+	//
+	// public void setAddress(String address) {
+	// this.address = address;
+	// }
+	//
+	// public void setCity(String city) {
+	// this.city = city;
+	// }
+	//
+	// public void setDistrict(String district) {
+	// this.district = district;
+	// }
 
 	public Set<Role> getRoles() {
 		return roles;

@@ -27,55 +27,55 @@ public class SignUpForm {
 	@NotBlank
 	@Size(min = 6, max = 40)
 	private String password;
-	@NotBlank
-	@Size(min = 6, max = 50)
-	private String phone;
-
-	@NotBlank
-	@Size(min = 3, max = 50)
-	private String address;
-
-	@NotBlank
-	@Size(min = 1, max = 50)
-	private String city;
-
-	@NotBlank
-	@Size(min = 1, max = 60)
-	private String district;
+	// // @NotBlank
+	// @Size(min = 6, max = 50)
+	// private String phone;
+	//
+	// // @NotBlank
+	// @Size(min = 3, max = 50)
+	// private String address;
+	//
+	// // @NotBlank
+	// @Size(min = 1, max = 50)
+	// private String city;
+	//
+	// // @NotBlank
+	// @Size(min = 1, max = 60)
+	// private String district;
 
 	private Set<String> role;
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
+	// public String getPhone() {
+	// return phone;
+	// }
+	//
+	// public String getAddress() {
+	// return address;
+	// }
+	//
+	// public String getCity() {
+	// return city;
+	// }
+	//
+	// public String getDistrict() {
+	// return district;
+	// }
+	//
+	// public void setPhone(String phone) {
+	// this.phone = phone;
+	// }
+	//
+	// public void setAddress(String address) {
+	// this.address = address;
+	// }
+	//
+	// public void setCity(String city) {
+	// this.city = city;
+	// }
+	//
+	// public void setDistrict(String district) {
+	// this.district = district;
+	// }
 
 	public String getFirstName() {
 		return firstName;

@@ -78,9 +78,12 @@ public class AuthRestAPIs {
 		}
 
 		// Creating user's account
+		/**
+		 * , signUpRequest.getPhone(), signUpRequest.getAddress(),
+		 * signUpRequest.getCity(), signUpRequest.getDistrict()
+		 */
 		User user = new User(signUpRequest.getFirstName(), signUpRequest.getSecondName(), signUpRequest.getUsername(),
-				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()), signUpRequest.getPhone(),
-				signUpRequest.getAddress(), signUpRequest.getCity(), signUpRequest.getDistrict());
+				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
